@@ -1,25 +1,28 @@
 package com.helpCo.MyNurse.models.Roles;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.helpCo.MyNurse.models.EContactType;
+
+import javax.persistence.*;
 
 @Entity
-public class Nurse {
+public class Contact {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
     private String[] languages;
+    @Enumerated(EnumType.STRING)
+    private EContactType type;
 
-    public Nurse() {}
+    public Contact() {}
 
-    public Nurse(String name, String email, String[] languages) {
+    public Contact(String name, String email, String[] languages,EContactType type) {
         this.name = name;
         this.email = email;
         this.languages = languages;
+        this.type = type;
     }
 
     public Long getId() {
@@ -52,5 +55,13 @@ public class Nurse {
 
     public void setLanguages(String[] languages) {
         this.languages = languages;
+    }
+
+    public EContactType getType() {
+        return type;
+    }
+
+    public void setType(EContactType type) {
+        this.type = type;
     }
 }
